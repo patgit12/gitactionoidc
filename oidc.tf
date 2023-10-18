@@ -4,7 +4,7 @@ data "tls_certificate" "eks" {
 }
 resource "aws_iam_openid_connect_provider" "git" {
   client_id_list = ["sts.amazonaws.com"]
-  thumbprint_list = [ data.tls_certificate.eks[0].sha1_fingerprint ]
+  thumbprint_list = [ data.tls_certificate.eks.certificates[0].sha1_fingerprint ]
   url = "https://token.actions.githubusercontent.com"
 }
 
@@ -16,13 +16,13 @@ data "aws_iam_policy_document" "git_aws_oidc" {
 
     condition {
       test = "StringEquals"
-      variable = "${replace(aws_iam_openid_connect.git.url, "https://", "")}:aud"
+      variable = "${replace(aws_iam_openid_connect_provider.git.url, "https://", "")}:aud"
       values = ["sts.amazonaws.com"]
     }
 
     condition {
       test = "StringEquals"
-      variable = "${replace(aws_iam_openid_connect.git.url, "https://", "")}:sub"
+      variable = "${replace(aws_iam_openid_connect_provider.git.url, "https://", "")}:sub"
       values = ["repo/*:*"]
     }
 
