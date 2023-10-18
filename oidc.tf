@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "git_aws_oidc" {
     }
 
     condition {
-      test = "StringEquals"
+      test = "StringLike"
       variable = "${replace(aws_iam_openid_connect_provider.git.url, "https://", "")}:sub"
       values = ["repo/patgit12:*"]
     }
