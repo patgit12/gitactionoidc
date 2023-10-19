@@ -9,8 +9,8 @@ on:
         required: true
         type: string
     secrets:
-      CI_ROLE:
-        required: true
+      #CI_ROLE:
+      #  required: true
       SSH_KEY_GITHUB_ACTIONS:
         required: true
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - name: AWS creds
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{secrets.CI_ROLE}}
+          #role-to-assume: ${{secrets.CI_ROLE}}
           aws-region: ${{inputs.aws-region}}
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
