@@ -25,6 +25,7 @@ jobs:
         with:
           role-to-assume: ${{secrets.CI_ROLE}}
           aws-region: ${{inputs.aws-region}}
+        continue-on-error: true
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
       - name: install awscli
