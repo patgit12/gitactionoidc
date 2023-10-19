@@ -27,6 +27,13 @@ jobs:
           aws-region: ${{inputs.aws-region}}
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
+      - name: install awscli
+        run: |
+          curl -L -o install-aws.sh https://raw.githubusercontent.com/unfor19/install-aws-cli-action/master/entrypoint.sh
+          chmod +x install-aws.sh
+          ./install-aws.sh "v2" "amd64"
+          rm install-aws.sh
+          aws sts get-caller-identity
       - name: Terraform format
         run: terraform fmt -check
       - name: init
