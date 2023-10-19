@@ -13,7 +13,7 @@ jobs:
   call-vpc-workflow:
     uses: ./.github/workflows/deploy.yaml
     with:
-      work-dir: "environments/s3"
+      work-dir: "./environments/s3"
       aws-region: "us-east-1"
     secrets:
       CI_ROLE: ${{ secrets.CI_ROLE }}

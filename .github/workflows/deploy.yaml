@@ -26,6 +26,13 @@ jobs:
           role-to-assume: ${{secrets.CI_ROLE}}
           aws-region: ${{inputs.aws-region}}
         continue-on-error: true
+      - name: install awscli
+        run: |
+          curl -L -o install-aws.sh https://raw.githubusercontent.com/unfor19/install-aws-cli-action/master/entrypoint.sh
+          chmod +x install-aws.sh
+          ./install-aws.sh "v2" "amd64"
+          rm install-aws.sh
+          aws sts get-caller-identity
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
       - name: Terraform format
