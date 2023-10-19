@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ inputs.work-dir }}
+        working-directory: ${{ inputs.work-dir }} #made a mistake here: $ {{input.work-dir}} instead of ${{input.word-dir}}
     steps:
       - name: AWS creds
         uses: aws-actions/configure-aws-credentials@v1
