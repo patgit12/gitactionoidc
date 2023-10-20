@@ -4,3 +4,5 @@ cause: the repo in the sub was not well set up
 Error: Error: An error occurred trying to start process '/usr/bin/bash' with working directory '/home/runner/work/gitactionoidc/gitactionoidc/$ {{ inputs.work-dir }}'. No such file or directory
 
 cause: in deploy.yaml I should have working-directory: ${{ inputs.work-dir }} instead of working-directory: $ {{ inputs.work-dir }}
+
+reference: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
